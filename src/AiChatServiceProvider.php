@@ -2,8 +2,8 @@
 
 namespace dougkusanagi\LaravelAiChat;
 
-use dougkusanagi\LaravelAiChat\Database\QueryExecutionService;
-use dougkusanagi\LaravelAiChat\Prompt\PromptService;
+use dougkusanagi\LaravelAiChat\Services\Database\QueryExecutionService;
+use dougkusanagi\LaravelAiChat\Services\Prompt\PromptService;
 use dougkusanagi\LaravelAiChat\Services\AiChatService;
 use dougkusanagi\LaravelAiChat\Interfaces\AiChatProvider;
 use dougkusanagi\LaravelAiChat\Services\AiProviders\GeminiAiChatProvider;

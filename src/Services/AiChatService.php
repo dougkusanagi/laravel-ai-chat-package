@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace dougkusanagi\LaravelAiChat\Services;
 
 use dougkusanagi\LaravelAiChat\DataAccessObjects\AiChatResponseDao;
 use dougkusanagi\LaravelAiChat\Interfaces\AiChatProvider;
