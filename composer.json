@@ -2,6 +2,9 @@
     "name": "dougkusanagi/laravel-ai-chat",
     "description": "A Laravel AI Chat package with database integration",
     "type": "library",
+    "version": "0.1.0",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^8.1",
         "laravel/framework": "^10.0",
