@@ -28,6 +28,11 @@ class AiChatServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Register Blade Components
+        $this->loadViewComponentsAs('ai-chat', [
+            \dougkusanagi\LaravelAiChat\View\Components\AiFloatingChat::class,
+        ]);
+
         // Publish configuration
         $this->publishes([
             __DIR__ . '/../config/ai-chat.php' => config_path('ai-chat.php'),
@@ -48,10 +53,5 @@ class AiChatServiceProvider extends ServiceProvider
 
         // Load routes
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-
-        // Register Blade Components
-        $this->loadViewComponentsAs('ai-chat', [
-            'ai-floating-chat' => \dougkusanagi\LaravelAiChat\View\Components\AiFloatingChat::class,
-        ]);
     }
 }

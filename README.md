@@ -13,6 +13,7 @@ Publish the configuration file and assets:
 ```bash
 php artisan vendor:publish --tag=ai-chat-config
 php artisan vendor:publish --tag=ai-chat-assets
+php artisan vendor:publish --tag=ai-chat-views
 ```
 
 Set your Gemini API key in your .env file:

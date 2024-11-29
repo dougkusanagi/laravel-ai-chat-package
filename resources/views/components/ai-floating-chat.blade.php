@@ -1,9 +1,7 @@
 @once
-    @push('styles')
     <style>
         [x-cloak] { display: none !important; }
     </style>
-    @endpush
 @endonce
 
 <div x-data="aiChat" x-cloak class="fixed right-4 bottom-4 z-50">
@@ -12,13 +10,13 @@
         x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-90"
-        class="bg-background flex flex-col rounded-md border shadow-lg w-[380px]"
+        class="bg-white flex flex-col rounded-md border shadow-lg w-[380px]"
         :class="isMinimized ? 'h-[400px]' : 'h-[600px]'">
         <!-- Chat Header -->
         <div class="flex justify-between items-center p-4 border-b">
             <div class="flex gap-2 items-start">
-                <div class="flex justify-center items-center h-8 rounded-full min-w-8 bg-primary/10">
-                    <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <div class="flex justify-center items-center h-8 rounded-full min-w-8 bg-blue-100">
+                    <svg class="w-4 h-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
@@ -26,8 +24,8 @@
                 </div>
 
                 <div>
-                    <h3 class="font-semibold text-foreground">AI Assistant</h3>
-                    <p class="text-sm text-muted-foreground">
+                    <h3 class="font-semibold text-gray-900">AI Assistant</h3>
+                    <p class="text-sm text-gray-500">
                         Ask about anything including data of application.
                     </p>
                 </div>
@@ -35,7 +33,7 @@
 
             <div class="flex gap-1">
                 <button @click="isMinimized = !isMinimized"
-                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-accent hover:text-accent-foreground">
+                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 text-gray-600">
                     <template x-if="!isMinimized">
                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -58,7 +56,7 @@
                     </template>
                 </button>
                 <button @click="isOpen = false"
-                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-accent hover:text-accent-foreground">
+                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 text-gray-600">
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -70,13 +68,13 @@
         </div>
 
         <!-- Chat Messages -->
-        <div class="overflow-y-auto flex-1 p-4 space-y-4" id="chat-messages">
+        <div class="overflow-y-auto flex-1 p-4 space-y-4 bg-gray-50" id="chat-messages">
             <template x-for="message in messages" :key="message.id">
                 <div class="flex gap-3 items-start">
                     <div class="flex justify-center items-center w-8 h-8 rounded-full"
-                        :class="message.role === 'assistant' ? 'bg-primary/10' : 'bg-muted'">
+                        :class="message.role === 'assistant' ? 'bg-blue-100' : 'bg-gray-200'">
                         <template x-if="message.role === 'assistant'">
-                            <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24"
+                            <svg class="w-4 h-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 8V4H8" />
@@ -88,7 +86,7 @@
                             </svg>
                         </template>
                         <template x-if="message.role === 'user'">
-                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            <svg class="w-4 h-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -96,27 +94,27 @@
                             </svg>
                         </template>
                     </div>
-                    <div class="flex-1 p-2 space-y-2 rounded bg-white/5">
+                    <div class="flex-1 p-2 space-y-2 rounded bg-white border">
                         <div class="max-w-none prose prose-sm">
-                            <p class="text-sm font-bold" x-text="message.content"></p>
-                            <p class="mt-1 text-xs text-muted-foreground" x-text="message.timestamp"></p>
+                            <p class="text-sm font-bold text-gray-900" x-text="message.content"></p>
+                            <p class="mt-1 text-xs text-gray-500" x-text="message.timestamp"></p>
                         </div>
                     </div>
                 </div>
             </template>
             <div x-show="isLoading" class="flex justify-center items-center py-4">
-                <div class="w-6 h-6 rounded-full border-b-2 animate-spin border-primary"></div>
+                <div class="w-6 h-6 rounded-full border-b-2 animate-spin border-blue-600"></div>
             </div>
         </div>
 
         <!-- Chat Input -->
-        <div class="p-4 border-t">
+        <div class="p-4 border-t bg-white">
             <form @submit.prevent="sendMessage" class="flex gap-2">
                 <input type="text" x-model="newMessage"
-                    class="flex px-3 py-1 w-full h-9 text-sm bg-transparent rounded-md border shadow-sm transition-colors border-input file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                    class="flex px-3 py-1 w-full h-9 text-sm bg-white rounded-md border shadow-sm transition-colors text-gray-900 border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Type your message..." :disabled="isLoading" />
                 <button type="submit"
-                    class="inline-flex justify-center items-center w-9 h-9 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90"
+                    class="inline-flex justify-center items-center w-9 h-9 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700"
                     :disabled="isLoading">
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -132,7 +130,7 @@
     <!-- Chat Toggle Button -->
     <div x-show="!isOpen">
         <button @click="isOpen = true"
-            class="inline-flex justify-center items-center w-10 h-10 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90">
+            class="inline-flex justify-center items-center w-10 h-10 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -141,121 +139,3 @@
         </button>
     </div>
 </div>
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('aiChat', () => ({
-            init() {
-                // Initialize component
-                this.isOpen = true;
-                this.isMinimized = false;
-                this.isLoading = false;
-            },
-            isOpen: true,
-            isMinimized: false,
-            isLoading: false,
-            messages: [{
-                id: 1,
-                role: 'assistant',
-                content: 'Welcome! How can we help you today?',
-                timestamp: new Date().toLocaleString()
-            }],
-            newMessage: '',
-
-            async sendMessage() {
-                if (!this.newMessage.trim() || this.isLoading) return;
-
-                const messageId = Date.now();
-                this.messages.push({
-                    id: messageId,
-                    role: 'user',
-                    content: this.newMessage,
-                    timestamp: new Date().toLocaleString()
-                });
-
-                const message = this.newMessage;
-                this.newMessage = '';
-                this.isLoading = true;
-
-                try {
-                    const response = await this.callAiChat(message);
-
-                    if (!response.message) {
-                        throw new Error('Invalid response from server');
-                    }
-
-                    // Always show the first response
-                    this.addAssistantMessage(response);
-
-                    // Only make second call if there's a SQL query and it's not null
-                    if (response.query && response.query !== 'null') {
-                        this.isLoading = true;
-                        const secondResponse = await this.callAiChat(message, response.query);
-
-                        if (!secondResponse.message) {
-                            throw new Error('Invalid response from server');
-                        }
-
-                        this.addAssistantMessage(secondResponse);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    this.messages.push({
-                        id: Date.now(),
-                        role: 'assistant',
-                        content: error.message ||
-                            'Sorry, an error occurred while processing your request.',
-                        timestamp: new Date().toLocaleString()
-                    });
-                } finally {
-                    this.isLoading = false;
-                    this.$nextTick(() => {
-                        const container = document.getElementById('chat-messages');
-                        if (container) {
-                            container.scrollTop = container.scrollHeight;
-                        }
-                    });
-                }
-            },
-
-            async callAiChat(message, query = null) {
-                const token = document.querySelector('meta[name="csrf-token"]');
-                if (!token) {
-                    throw new Error('CSRF token not found');
-                }
-
-                const response = await fetch('/api/ai-chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': token.content,
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message,
-                        query,
-                    })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Network response was not ok');
-                }
-
-                return data;
-            },
-
-            addAssistantMessage(response) {
-                if (response && response.message) {
-                    this.messages.push({
-                        id: Date.now(),
-                        role: 'assistant',
-                        content: response.message,
-                        timestamp: new Date().toLocaleString()
-                    });
-                }
-            }
-        }));
-    });
-</script>
