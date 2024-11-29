@@ -22,26 +22,14 @@ GEMINI_API_KEY=your_api_key_here
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-    <!-- Alpine.js MUST be loaded BEFORE ai-chat.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
     <!-- AI Chat JavaScript -->
     <script defer src="{{ asset('vendor/ai-chat/js/ai-chat.js') }}"></script>
-    
-    <!-- If you're using Laravel Vite -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <!-- Your content -->
     
     <!-- Add the chat component wherever you want it to appear -->
     <x-ai-chat::ai-floating-chat />
-    
-    <!-- Make sure you have @stack('scripts') in your layout -->
-    @stack('scripts')
 </body>
 </html>
 ```

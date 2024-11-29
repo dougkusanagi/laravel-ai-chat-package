@@ -18,13 +18,13 @@
         x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-90"
-        class="bg-white flex flex-col rounded-md border shadow-lg w-[380px]"
+        class="bg-white dark:bg-gray-800 flex flex-col rounded-md border border-gray-200 dark:border-gray-700 shadow-lg w-[380px]"
         :class="isMinimized ? 'h-[400px]' : 'h-[600px]'">
         <!-- Chat Header -->
-        <div class="flex justify-between items-center p-4 border-b">
+        <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
             <div class="flex gap-2 items-start">
-                <div class="flex justify-center items-center h-8 rounded-full min-w-8 bg-blue-100">
-                    <svg class="w-4 h-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <div class="flex justify-center items-center h-8 rounded-full min-w-8 bg-blue-100 dark:bg-blue-900">
+                    <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
@@ -32,8 +32,8 @@
                 </div>
 
                 <div>
-                    <h3 class="font-semibold text-gray-900">AI Assistant</h3>
-                    <p class="text-sm text-gray-500">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">AI Assistant</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
                         Ask about anything including data of application.
                     </p>
                 </div>
@@ -41,7 +41,7 @@
 
             <div class="flex gap-1">
                 <button @click="isMinimized = !isMinimized"
-                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 text-gray-600">
+                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400">
                     <template x-if="!isMinimized">
                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -64,7 +64,7 @@
                     </template>
                 </button>
                 <button @click="isOpen = false"
-                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 text-gray-600">
+                    class="flex justify-center items-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400">
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -76,13 +76,13 @@
         </div>
 
         <!-- Chat Messages -->
-        <div class="overflow-y-auto flex-1 p-4 space-y-4 bg-gray-50" id="chat-messages">
+        <div class="overflow-y-auto flex-1 p-4 space-y-4 bg-gray-50 dark:bg-gray-900" id="chat-messages">
             <template x-for="message in messages" :key="message.id">
                 <div class="flex gap-3 items-start">
                     <div class="flex justify-center items-center w-8 h-8 rounded-full"
-                        :class="message.role === 'assistant' ? 'bg-blue-100' : 'bg-gray-200'">
+                        :class="message.role === 'assistant' ? 'bg-blue-100 dark:bg-blue-900' : 'bg-gray-200 dark:bg-gray-700'">
                         <template x-if="message.role === 'assistant'">
-                            <svg class="w-4 h-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="24"
+                            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 8V4H8" />
@@ -94,7 +94,7 @@
                             </svg>
                         </template>
                         <template x-if="message.role === 'user'">
-                            <svg class="w-4 h-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            <svg class="w-4 h-4 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -102,27 +102,27 @@
                             </svg>
                         </template>
                     </div>
-                    <div class="flex-1 p-2 space-y-2 rounded bg-white border">
-                        <div class="max-w-none prose prose-sm">
-                            <p class="text-sm font-bold text-gray-900" x-text="message.content"></p>
-                            <p class="mt-1 text-xs text-gray-500" x-text="message.timestamp"></p>
+                    <div class="flex-1 p-2 space-y-2 rounded bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                        <div class="max-w-none prose prose-sm dark:prose-invert">
+                            <p class="text-sm font-bold text-gray-900 dark:text-white" x-text="message.content"></p>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400" x-text="message.timestamp"></p>
                         </div>
                     </div>
                 </div>
             </template>
             <div x-show="isLoading" class="flex justify-center items-center py-4">
-                <div class="w-6 h-6 rounded-full border-b-2 animate-spin border-blue-600"></div>
+                <div class="w-6 h-6 rounded-full border-b-2 animate-spin border-blue-600 dark:border-blue-400"></div>
             </div>
         </div>
 
         <!-- Chat Input -->
-        <div class="p-4 border-t bg-white">
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
             <form @submit.prevent="sendMessage" class="flex gap-2">
                 <input type="text" x-model="newMessage"
-                    class="flex px-3 py-1 w-full h-9 text-sm bg-white rounded-md border shadow-sm transition-colors text-gray-900 border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+                    class="flex px-3 py-1 w-full h-9 text-sm bg-white dark:bg-gray-900 rounded-md border shadow-sm transition-colors text-gray-900 dark:text-white border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Type your message..." :disabled="isLoading" />
                 <button type="submit"
-                    class="inline-flex justify-center items-center w-9 h-9 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700"
+                    class="inline-flex justify-center items-center w-9 h-9 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:opacity-50 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600"
                     :disabled="isLoading">
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -138,7 +138,7 @@
     <!-- Chat Toggle Button -->
     <div x-show="!isOpen">
         <button @click="isOpen = true"
-            class="inline-flex justify-center items-center w-10 h-10 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700">
+            class="inline-flex justify-center items-center w-10 h-10 text-sm font-medium whitespace-nowrap rounded-md shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:opacity-50 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
