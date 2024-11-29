@@ -28,10 +28,25 @@ class AiChatServiceProvider extends ServiceProvider
 
 	public function boot(): void
 	{
+		// Publish configuration
 		$this->publishes([
 			__DIR__ . '/../config/ai-chat.php' => config_path('ai-chat.php'),
 		], 'ai-chat-config');
 
+		// Publish views
+		$this->publishes([
+			__DIR__ . '/../resources/views' => resource_path('views/vendor/ai-chat'),
+		], 'ai-chat-views');
+
+		// Load views
+		$this->loadViewsFrom(__DIR__ . '/../resources/views', 'ai-chat');
+
+		// Load routes
 		$this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+		// Register Blade Components
+		$this->loadViewComponentsAs('ai-chat', [
+			'ai-floating-chat' => \dougkusanagi\LaravelAiChat\View\Components\AiFloatingChat::class,
+		]);
 	}
 }
