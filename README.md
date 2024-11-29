@@ -1,5 +1,7 @@
 # Laravel AI Chat
 
+![Example](example.png)
+
 ## Installation
 
 ```bash
@@ -56,4 +58,3 @@ If you see "aiChat is not defined" error:
 4. Clear your browser cache and Laravel view cache:
 ```bash
 php artisan view:clear
-```
