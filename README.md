@@ -8,10 +8,11 @@ Install the package via Composer:
 composer require dougkusanagi/laravel-ai-chat
 ```
 
-Publish the configuration file:
+Publish the configuration file and assets:
 
 ```bash
 php artisan vendor:publish --tag=ai-chat-config
+php artisan vendor:publish --tag=ai-chat-assets
 ```
 
 Set your Gemini API key in your .env file:
@@ -22,18 +23,32 @@ GEMINI_API_KEY=your_api_key_here
 
 ## Usage
 
-The chat component will be automatically available in your blade views. Simply include it where you want the chat to appear:
+First, include Alpine.js and the AI Chat JavaScript in your layout file (usually `app.blade.php`):
+
+```blade
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ... other head elements ... -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <!-- Include Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Include AI Chat JavaScript -->
+    <script src="{{ asset('vendor/ai-chat/js/ai-chat.js') }}"></script>
+</head>
+<body>
+    <!-- Your content -->
+    @yield('content')
+</body>
+</html>
+```
+
+Then, add the chat component where you want it to appear:
 
 ```blade
 <x-ai-chat::ai-floating-chat />
-```
-
-Make sure you have Alpine.js and Tailwind CSS installed in your application, as they are required for the chat interface to work properly.
-
-Add the following to your layout file (usually `app.blade.php`) in the head section:
-
-```blade
-<meta name="csrf-token" content="{{ csrf_token() }}">
 ```
 
 The chat component will appear as a floating button in the bottom-right corner of your page. When clicked, it will expand into a full chat interface where users can interact with the AI assistant.

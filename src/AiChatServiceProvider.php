@@ -11,42 +11,47 @@ use Illuminate\Support\ServiceProvider;
 
 class AiChatServiceProvider extends ServiceProvider
 {
-	public function register(): void
-	{
-		$this->app->bind(AiChatProvider::class, GeminiAiChatProvider::class);
+    public function register(): void
+    {
+        $this->app->bind(AiChatProvider::class, GeminiAiChatProvider::class);
 
-		$this->app->singleton(AiChatService::class, function ($app) {
-			return new AiChatService(
-				$app->make(AiChatProvider::class),
-				$app->make(PromptService::class),
-				$app->make(QueryExecutionService::class)
-			);
-		});
+        $this->app->singleton(AiChatService::class, function ($app) {
+            return new AiChatService(
+                $app->make(AiChatProvider::class),
+                $app->make(PromptService::class),
+                $app->make(QueryExecutionService::class)
+            );
+        });
 
-		$this->mergeConfigFrom(__DIR__ . '/../config/ai-chat.php', 'ai-chat');
-	}
+        $this->mergeConfigFrom(__DIR__ . '/../config/ai-chat.php', 'ai-chat');
+    }
 
-	public function boot(): void
-	{
-		// Publish configuration
-		$this->publishes([
-			__DIR__ . '/../config/ai-chat.php' => config_path('ai-chat.php'),
-		], 'ai-chat-config');
+    public function boot(): void
+    {
+        // Publish configuration
+        $this->publishes([
+            __DIR__ . '/../config/ai-chat.php' => config_path('ai-chat.php'),
+        ], 'ai-chat-config');
 
-		// Publish views
-		$this->publishes([
-			__DIR__ . '/../resources/views' => resource_path('views/vendor/ai-chat'),
-		], 'ai-chat-views');
+        // Publish views
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/ai-chat'),
+        ], 'ai-chat-views');
 
-		// Load views
-		$this->loadViewsFrom(__DIR__ . '/../resources/views', 'ai-chat');
+        // Publish assets
+        $this->publishes([
+            __DIR__ . '/../resources/js' => public_path('vendor/ai-chat/js'),
+        ], 'ai-chat-assets');
 
-		// Load routes
-		$this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        // Load views
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ai-chat');
 
-		// Register Blade Components
-		$this->loadViewComponentsAs('ai-chat', [
-			'ai-floating-chat' => \dougkusanagi\LaravelAiChat\View\Components\AiFloatingChat::class,
-		]);
-	}
+        // Load routes
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        // Register Blade Components
+        $this->loadViewComponentsAs('ai-chat', [
+            'ai-floating-chat' => \dougkusanagi\LaravelAiChat\View\Components\AiFloatingChat::class,
+        ]);
+    }
 }
