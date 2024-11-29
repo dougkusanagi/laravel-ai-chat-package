@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Prompt;
+namespace dougkusanagi\LaravelAiChat\Services\Prompt;
 
 use dougkusanagi\LaravelAiChat\Services\Database\DatabaseSchemaService;
 

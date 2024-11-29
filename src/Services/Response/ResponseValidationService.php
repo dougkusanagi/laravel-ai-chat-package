@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Response;
+namespace dougkusanagi\LaravelAiChat\Services\Response;
 
 class ResponseValidationService
 {
