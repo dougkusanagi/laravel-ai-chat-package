@@ -1,7 +1,8 @@
+// Wait for Alpine and DOM to be ready
 document.addEventListener('alpine:init', () => {
     Alpine.data('aiChat', () => ({
         init() {
-            // Initialize component
+            console.log('AI Chat initialized'); // Debug log
             this.isOpen = true;
             this.isMinimized = false;
             this.isLoading = false;

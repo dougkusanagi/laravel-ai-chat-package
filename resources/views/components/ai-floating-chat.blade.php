@@ -4,6 +4,14 @@
     </style>
 @endonce
 
+@push('scripts')
+    <script>
+        if (typeof Alpine === 'undefined') {
+            console.error('Alpine.js is not loaded. Please include Alpine.js before the ai-chat.js script.');
+        }
+    </script>
+@endpush
+
 <div x-data="aiChat" x-cloak class="fixed right-4 bottom-4 z-50">
     <!-- Chat Container -->
     <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
