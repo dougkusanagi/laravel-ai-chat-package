@@ -57,15 +57,6 @@ The views will be published to `resources/views/vendor/ai-chat/components/`.
 - [ ] Implement OpenAiProvider
 - [ ] Implement AnthropicProvider
 
-## Troubleshooting
-
-If you see "aiChat is not defined" error:
-
-1. Make sure Alpine.js is loaded before ai-chat.js
-2. Make sure both scripts have the `defer` attribute
-3. Make sure you have `@stack('scripts')` in your layout file
-4. Clear your browser cache and Laravel view cache:
-
 ```bash
 php artisan view:clear
 ```
