@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Database;
+namespace dougkusanagi\LaravelAiChat\Services\Database;
 
 use Illuminate\Support\Facades\Schema;
 
