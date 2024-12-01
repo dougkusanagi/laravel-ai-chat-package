@@ -57,6 +57,3 @@ The views will be published to `resources/views/vendor/ai-chat/components/`.
 - [ ] Implement OpenAiProvider
 - [ ] Implement AnthropicProvider
 
-```bash
-php artisan view:clear
-```
