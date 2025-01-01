@@ -19,11 +19,11 @@
         x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-90"
-        class=" flex flex-col rounded-md border border-gray-200 dark:border-gray-700 shadow-lg w-[380px]"
+        class=" flex flex-col rounded-md border border-gray-200 dark:border-white/10 shadow-lg w-[380px] overflow-hidden"
         :class="isMinimized ? 'h-[400px]' : 'h-[600px]'">
         <!-- Chat Header -->
         <div
-            class="flex items-center justify-between p-4 bg-white border-b border-gray-200 dark:bg-background dark:border-gray-700">
+            class="flex items-center justify-between p-4 bg-white border-b border-gray-200 over dark:bg-background dark:border-white/10">
             <div class="flex items-start gap-2">
                 <div class="flex items-center justify-center h-8 bg-blue-100 rounded-full min-w-8 dark:bg-blue-900">
                     <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@
                         </template>
                     </div>
                     <div
-                        class="flex-1 p-2 space-y-2 bg-white border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700">
+                        class="flex-1 p-2 space-y-2 bg-white border border-gray-200 rounded dark:bg-gray-800 dark:border-white/10">
                         <div class="prose-sm prose max-w-none dark:prose-invert">
                             <p class="text-sm font-bold text-gray-900 dark:text-white" x-text="message.content"></p>
                             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400" x-text="message.timestamp"></p>
@@ -119,10 +119,10 @@
         </div>
 
         <!-- Chat Input -->
-        <div class="p-4 bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+        <div class="p-4 bg-white border-t border-gray-200 dark:border-white/10 dark:bg-gray-800">
             <form @submit.prevent="sendMessage" class="flex gap-2">
                 <input type="text" x-model="newMessage"
-                    class="flex w-full px-3 py-1 text-sm text-gray-900 transition-colors bg-white border border-gray-300 rounded-md shadow-sm h-9 dark:bg-gray-900 dark:text-white dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+                    class="flex w-full px-3 py-1 text-sm text-gray-900 transition-colors bg-white border border-gray-300 rounded-md shadow-sm h-9 dark:bg-gray-900 dark:text-white dark:border-white/10 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Type your message..." :disabled="isLoading" />
                 <button type="submit"
                     class="inline-flex items-center justify-center text-sm font-medium text-white transition-colors bg-blue-600 rounded-md shadow w-9 h-9 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:opacity-50 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
