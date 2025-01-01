@@ -2,12 +2,11 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('aiChat', () => ({
         init() {
-            console.log('AI Chat initialized'); // Debug log
             this.isOpen = false;
             this.isMinimized = false;
             this.isLoading = false;
         },
-        isOpen: true,
+        isOpen: false,
         isMinimized: false,
         isLoading: false,
         messages: [{
