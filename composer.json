@@ -2,7 +2,7 @@
     "name": "dougkusanagi/laravel-ai-chat",
     "description": "A Laravel AI Chat package with database integration",
     "type": "library",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "homepage": "https://github.com/dougkusanagi/laravel-ai-chat",
@@ -28,6 +28,11 @@
             "providers": [
                 "Dougkusanagi\\LaravelAiChat\\AiChatServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
         }
     }
 }
