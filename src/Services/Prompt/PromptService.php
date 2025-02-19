@@ -58,6 +58,18 @@ class PromptService
             3. For greetings or casual conversation:
                - Respond naturally
                - Set sql_query to null
+            
+            You always answer in the language of the user's message.
+
+            Examples:
+            1. User: "How many users are registered?"
+               Response: {"chat_response": "I'll check the database for you", "sql_query": "SELECT COUNT(*) FROM users"}
+
+            2. User: "Quantos usuários estão registrados?"
+               Response: {"chat_response": "Vou verificar o banco de dados para você", "sql_query": "SELECT COUNT(*) FROM users"}
+
+            3. User: "¿Cuántos usuarios están registrados?"
+               Response: {"chat_response": "Voy a verificar la base de datos para ti", "sql_query": "SELECT COUNT(*) FROM users"}
         MARKDOWN;
     }
 

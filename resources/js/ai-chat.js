@@ -3,17 +3,17 @@ document.addEventListener("alpine:init", () => {
 	Alpine.data("aiChat", () => ({
 		init() {
 			this.laravelAiChatIsOpen = false;
-			this.laravelAiChatIsMinimized = false;
+			this.laravelAiChatIsMinimized = true;
 			this.laravelAiChatIsLoading = false;
 		},
 		laravelAiChatIsOpen: false,
-		laravelAiChatIsMinimized: false,
+		laravelAiChatIsMinimized: true,
 		laravelAiChatIsLoading: false,
 		messages: [
 			{
 				id: 1,
 				role: "assistant",
-				content: "Welcome! How can we help you today?",
+				content: "Bem vindo! Como posso ajudar hoje?",
 				timestamp: new Date().toLocaleString(),
 			},
 		],
